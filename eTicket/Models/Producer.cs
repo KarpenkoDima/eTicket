@@ -2,7 +2,7 @@
 
 namespace eTicket.Models
 {
-    public class Actor
+    public class Producer
     {
         [Key]
         public int Id { get; set; }
