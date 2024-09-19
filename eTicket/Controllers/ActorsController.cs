@@ -1,8 +1,6 @@
 ﻿using eTicket.Data;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace eTicket.Controllers
@@ -15,9 +13,9 @@ namespace eTicket.Controllers
         {
             dbContext = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = dbContext.Actors.ToList();
+            var allActors = await dbContext.Actors.ToListAsync();
             return View();
         }
     }
