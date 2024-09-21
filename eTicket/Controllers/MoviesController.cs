@@ -22,5 +22,6 @@ namespace eTicket.Controllers
             var allMovies = await dbContext.Movies.Include(m => m.Cinema).OrderBy(m => m.MovieName).ToListAsync();
             return View(allMovies);
         }
+
     }
 }
