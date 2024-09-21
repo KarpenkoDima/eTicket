@@ -5,37 +5,52 @@
 }
 
 <div class="row">
-    <d8v class="col-md-8 offset-md-2">
-        <table>
-            <thead>
-                <tr class="text-center">
-                    <th>
-                        @Html.DisplayNameFor(model => model.ImgUrl)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MovieName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ImgUrl" alt="@item.MovieName" style="max-width:150px" />
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.MovieName)
-                        </td>
-                        <td class="align-middle">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </d8v>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    Movie Name Sample
+                                    <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="" width="100%" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">Description</p>
+                            <p class="card-text"><b>Cinema: </b>Cinema Name</p>
+                            <p class="card-text"><b>Category: </b>MovieCategory</p>
+                            <p class="card-text"><b>Start Date: </b>StartDate</p>
+                            <p class="card-text"><b>End Date: </b>EndDate</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                Status Sample
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                                <a class="btn btn-success text-white d">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart ($X.XX)
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
