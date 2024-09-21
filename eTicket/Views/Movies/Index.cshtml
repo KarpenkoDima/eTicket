@@ -14,25 +14,36 @@
                         <div class="card-header text-white bg-info">
                             <p class="card-text">
                                 <h5 class="card-title">
-                                    Movie Name Sample
+                                    @item.MovieName
                                     <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
                                 </h5>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="" width="100%" alt="">
+                        <img src="@item.ImgUrl" width="100%" alt="@item.MovieName">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <p class="card-text">Description</p>
-                            <p class="card-text"><b>Cinema: </b>Cinema Name</p>
-                            <p class="card-text"><b>Category: </b>MovieCategory</p>
-                            <p class="card-text"><b>Start Date: </b>StartDate</p>
-                            <p class="card-text"><b>End Date: </b>EndDate</p>
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
+                            <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
+                            <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@item.EndDate.ToString("dd MMM yy")</p>
                             <p class="card-text ">
                                 <b>Status: </b>
-                                Status Sample
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <span class="badge bg-success">AVAILABLE</span>
+                                }
+                                else if(DateTime.Now > item.EndDate)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
                             </p>
 
                         </div>
@@ -43,8 +54,12 @@
                                 <a class="btn btn-outline-primary float-right">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>
-                                <a class="btn btn-success text-white d">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart ($X.XX)
+                                <a class="btn btn-success text-white d">                                   
+                                    @{
+                                        var price = item.Price * 43;
+                                        price.ToString("c");
+                                    }
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @price.ToString("c"))
                                 </a>
                             </p>
                         </div>
