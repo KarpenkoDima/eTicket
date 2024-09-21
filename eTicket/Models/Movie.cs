@@ -16,7 +16,7 @@ namespace eTicket.Models
         public string ImgUrl { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public MovieCategotry MovieCategory { get; set; }
+        public MovieCategory MovieCategory { get; set; }
 
         //Relationships
         public List<Actor_Movie> Actors_Movies { get; set; }
