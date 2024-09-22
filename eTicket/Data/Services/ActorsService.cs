@@ -25,9 +25,10 @@ namespace eTicket.Data.Services
             throw new NotImplementedException();
         }
 
-        public Actor GetById(int id)
+        public async Task<Actor> GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = await appDbContext.Actors.FirstOrDefaultAsync(a => a.Id == id);
+            return result;
         }
 
         public Actor Update(int id, Actor updateActor)
