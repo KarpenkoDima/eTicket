@@ -17,7 +17,7 @@ namespace eTicket.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allActors = await actorsService.GetAll();
+            var allActors = await actorsService.GetAllAsync();
             return View(allActors);
         }
 
@@ -42,7 +42,7 @@ namespace eTicket.Controllers
         //Get: Actors/Details/1
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails = await actorsService.GetById(id);
+            var actorDetails = await actorsService.GetByIdAsync(id);
 
             if (actorDetails == null)
             {
@@ -55,7 +55,7 @@ namespace eTicket.Controllers
         // Get: Actors/Edit
         public async Task<IActionResult> Edit(int id)
         {
-            var actorDetails = await actorsService.GetById(id);
+            var actorDetails = await actorsService.GetByIdAsync(id);
 
             if (actorDetails == null)
             {
@@ -71,14 +71,14 @@ namespace eTicket.Controllers
             {
                 return View(actor);
             }
-            await actorsService.Update(id, actor);
+            await actorsService.UpdateAsync(id, actor);
             return RedirectToAction(nameof(Index));
         }
 
         // Get: Actors/Delete
         public async Task<IActionResult> Delete(int id)
         {
-            var actorDetails = await actorsService.GetById(id);
+            var actorDetails = await actorsService.GetByIdAsync(id);
 
             if (actorDetails == null)
             {
@@ -90,13 +90,13 @@ namespace eTicket.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var actorDetails = await actorsService.GetById(id);
+            var actorDetails = await actorsService.GetByIdAsync(id);
 
             if (actorDetails == null)
             {
                 return View("NotFound");
             }
-            await actorsService.Delete(id);
+            await actorsService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
