@@ -20,9 +20,11 @@ namespace eTicket.Data.Services
             appDbContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var res = await appDbContext.Actors.FirstOrDefaultAsync(n => n.Id == id);
+            appDbContext.Remove(res);
+            await appDbContext.SaveChangesAsync();
         }
 
         public async Task<Actor> GetById(int id)

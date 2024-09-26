@@ -12,6 +12,6 @@ namespace eTicket.Data.Services
         Task<Actor> GetById(int id);
         void Add(Actor actor);
         Task<Actor> Update(int id, Actor updateActor);
-        void Delete(int id);
+        Task Delete(int id);
     }
 }
