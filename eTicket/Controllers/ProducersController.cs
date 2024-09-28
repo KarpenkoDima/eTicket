@@ -47,5 +47,29 @@ namespace eTicket.Controllers
             await producersService.AddAsync(producer);
             return RedirectToAction("Index");
         }
+
+        // GET: producers/edit
+        public async Task<IActionResult> Edit(int id)
+        {
+            var producerDetails = await producersService.GetByIdAsync(id);
+            if (producerDetails == null)
+            {
+                return View("NotFound");
+            }
+            return View(producerDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id, ProfilePicture, FullName, Bio")] Producer producer)
+        {
+            if (false == ModelState.IsValid) return View(producer);
+
+            if (producer.Id == id)
+            {
+                await producersService.UpdateAsync(id, producer);
+                return RedirectToAction("Index");
+            }
+            return View(producer);
+        }
     }
 }
