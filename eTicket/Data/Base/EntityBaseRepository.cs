@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 
@@ -39,6 +41,13 @@ namespace eTicket.Data.Base
             entityEntry.State = EntityState.Modified;
 
             await appDbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProps)
+        {
+            IQueryable<T> query = appDbContext.Set<T>();
+            query = includeProps.Aggregate(query, (current, includeProps) => current.Include(includeProps));
+            return await query.ToListAsync();
         }
     }
 }
