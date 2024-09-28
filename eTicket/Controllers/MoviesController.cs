@@ -1,6 +1,8 @@
 ﻿using eTicket.Data;
+using eTicket.Data.Services;
 using eTicket.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,15 +13,15 @@ namespace eTicket.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly AppDbContext dbContext;
+        private readonly IMoviesService moviesService;
 
-        public MoviesController(AppDbContext context)
+        public MoviesController(IMoviesService service)
         {
-            dbContext = context;
+            moviesService = service;
         }
         public async Task<IActionResult> Index()
         {
-            var allMovies = await dbContext.Movies.Include(m => m.Cinema).OrderBy(m => m.MovieName).ToListAsync();
+            var allMovies = await moviesService.GetAllAsync();
             return View(allMovies);
         }
 

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using eTicket.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTicket.Models
 {
-    public class Movie
+    public class Movie :IEntityBase
     {
         [Key]
         public int Id { get; set; }
