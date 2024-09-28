@@ -1,4 +1,5 @@
 ﻿using eTicket.Data;
+using eTicket.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,5 +22,6 @@ namespace eTicket.Controllers
             var allCinemas = await dbContext.Cinemas.ToListAsync();
             return View(allCinemas);
         }
+
     }
 }
