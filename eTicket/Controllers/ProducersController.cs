@@ -1,7 +1,9 @@
 ﻿using eTicket.Data;
 using eTicket.Data.Services;
+using eTicket.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 
 namespace eTicket.Controllers
@@ -29,6 +31,21 @@ namespace eTicket.Controllers
                 return View("NotFound");
             }
             return View(producerDetails);
+        }
+
+        // GET: producers/create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("ProfilePicture, FullName, Bio")]Producer producer)
+        {
+            if (false == ModelState.IsValid) return View(producer);
+
+            await producersService.AddAsync(producer);
+            return RedirectToAction("Index");
         }
     }
 }
